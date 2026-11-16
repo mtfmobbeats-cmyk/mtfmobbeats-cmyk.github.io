@@ -51,3 +51,12 @@ Then open `http://localhost:8000/` in your browser.
 ## Hosting notes
 
 GitHub Pages is **static hosting**. Interactive functionality here runs inside the visitor's browser, with no private server or database. Later, a separately deployed Streamlit app could be linked or embedded, but GitHub Pages alone does not run Python/Streamlit backends.
+
+
+## Recruiter update (November 2026)
+
+- Public PDF resume: `resume/Brandon_Wilkes_Resume.pdf` (email retained; phone omitted).
+- Resume omits an earlier unverified CBCA coursework claim.
+- Case studies include step-by-step reasoning and explicit limits of review authority.
+- Direct LinkedIn profile URL was not verifiable. The website labels its LinkedIn link as a *search*, not a verified individual profile; replace it with your exact profile URL when available.
+- All borrower, company and dashboard examples are fictional.
