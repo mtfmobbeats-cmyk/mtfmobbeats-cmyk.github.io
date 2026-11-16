@@ -1,5 +1,13 @@
 (()=>{'use strict';const $=id=>document.getElementById(id);const money=n=>'$'+Math.round(n).toLocaleString('en-US');const pct=n=>isFinite(n)?(n*100).toFixed(1)+'%':'N/A';let memo='';
-function calculate(){const rev=Math.max(0,Number($('fin-revenue').value)||0),tax=Math.max(0,Number($('fin-tax').value)||0),exp=Math.max(0,Number($('fin-expenses').value)||0),debt=Math.max(0,Number($('fin-debt').value)||0),cf=rev-exp,variance=rev-tax,coverage=debt?cf/debt:null;const discrepancy=variance!==0,findings=[];
+const readAmount=id=>{const input=$(id),raw=input.value.trim(),valid=raw!==''&&Number.isFinite(Number(raw))&&Number(raw)>=0;input.setAttribute('aria-invalid',String(!valid));return valid?Number(raw):null;};
+function calculate(){const rev=readAmount('fin-revenue'),tax=readAmount('fin-tax'),exp=readAmount('fin-expenses'),debt=readAmount('fin-debt');
+if([rev,tax,exp,debt].some(value=>value===null)){
+ for(const id of ['fin-variance','fin-cashflow','fin-coverage','fin-percent','fin-expense-ratio'])$(id).textContent='—';
+ $('fin-reference').textContent='Not calculable';$('fin-output').classList.add('needs-review');$('fin-status').textContent='Valid inputs required';
+ const list=$('fin-findings');list.replaceChildren();const li=document.createElement('li'),strong=document.createElement('strong'),detail=document.createElement('span');strong.textContent='Incomplete or invalid amount';detail.textContent='Fill in all four fields using nonnegative numbers. Blank or negative figures must be corrected before a financial snapshot can be calculated.';li.append(strong,detail);list.appendChild(li);
+ memo='BORROWER FINANCIAL REVIEW — FICTIONAL PORTFOLIO EXERCISE\nInput review incomplete. Fill in all four fields with nonnegative amounts before interpreting calculations.\nNot a credit decision.';return;
+}
+const cf=rev-exp,variance=rev-tax,coverage=debt?cf/debt:null;const discrepancy=variance!==0,findings=[];
 $('fin-variance').textContent=(variance<0?'-':'')+money(Math.abs(variance));$('fin-cashflow').textContent=(cf<0?'-':'')+money(Math.abs(cf));$('fin-coverage').textContent=coverage===null?'N/A':coverage.toFixed(2)+'×';$('fin-percent').textContent=tax?((variance<0?'-':'+')+pct(Math.abs(variance/tax))):'N/A';$('fin-expense-ratio').textContent=rev?pct(exp/rev):'N/A';$('fin-reference').textContent=coverage===null?'Not calculable':coverage>=1.25?'Above illustration':'Below illustration';
 if(discrepancy)findings.push(['Revenue discrepancy',`Reported revenue ${money(rev)} and tax-document revenue ${money(tax)} differ by ${money(Math.abs(variance))}. Request a reconciliation and supporting schedules.`]);
 if(tax===0)findings.push(['Missing comparison basis','There is no usable tax-document revenue figure; obtain or verify the relevant records.']);
