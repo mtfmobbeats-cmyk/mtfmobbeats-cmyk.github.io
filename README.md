@@ -8,6 +8,8 @@ A responsive GitHub Pages portfolio for **commercial loan documentation, credit 
 - `projects/loan-review.html`: Interactive fictional loan file review with exception generation
 - `projects/operations-dashboard.html`: Dynamic, filterable dashboard containing **500 synthetic records** and CSV export
 - `projects/financial-review.html`: Fictional financial-information reconciliation and a **simplified** coverage-ratio illustration
+- `projects/borrowing-base.html`: Working ABL borrowing-base simulator with exclusions, reserves, a limit, available capacity, and exportable worksheet
+- `projects/portfolio-monitoring.html`: 24-facility synthetic credit monitoring watchlist with scenario controls, headroom bands, and CSV export
 - `assets/`: Styles, JavaScript, and vector favicon
 - `.nojekyll`: Tells GitHub Pages to serve the site as plain static files
 
@@ -60,3 +62,9 @@ GitHub Pages is **static hosting**. Interactive functionality here runs inside t
 - Case studies include step-by-step reasoning and explicit limits of review authority.
 - Direct LinkedIn profile URL was not verifiable. The website labels its LinkedIn link as a *search*, not a verified individual profile; replace it with your exact profile URL when available.
 - All borrower, company and dashboard examples are fictional.
+
+## Design and methodology update (November 2026)
+
+This site now has five projects. The new ABL and credit-monitoring projects are **original interactive teaching simulations** based on common commercial lending workflows; they are not actual transactions, evidence of former duties, or institution-approved credit analyses. The source code contains deterministic calculations, local-only forms and synthetic facility records. The dashboard offers a transparent coverage proxy, **not legally enforceable covenant status**.
+
+External portfolios studied for feature inspiration (not copied): Matthew Franklin's clear problem/finding/recommendation layout, CreditLens commercial ratio and stress workflows, and Credit Risk Intelligence's scenario/watchlist/reporting patterns. No external assets, copy, or project source code were reused.
